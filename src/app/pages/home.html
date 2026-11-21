@@ -1,0 +1,54 @@
+<main id="conteudo">
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="container hero-layout">
+      <div class="hero-copy">
+        <h1 id="hero-title">Seu negócio.<br />Novas conexões.<br />Mais possibilidades.</h1>
+        <p>
+          Software, dados, automação e inteligência artificial que se conectam ao que você precisa
+          resolver — e ao que ainda quer construir.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#briefing">Planejar meu projeto <nexo-icon name="diagonal" /></a
+          ><a class="hero-link" href="#solucoes">Conhecer as soluções <nexo-icon name="arrow" /></a>
+        </div>
+        <div class="hero-footnote">
+          <span class="small-symbol" aria-hidden="true"><nexo-icon name="compass" /></span>
+          <p>
+            Do primeiro site a uma operação conectada.<br />Um projeto por vez, no ritmo do seu
+            negócio.
+          </p>
+        </div>
+      </div>
+      <div class="hero-config">
+        <div class="config-decoration" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <nexo-configurator
+          [selected]="selectedServices()"
+          (selectedChange)="selectedServices.set($event)"
+        />
+      </div>
+    </div>
+    <div class="hero-bottom container">
+      <span>Para empresas e profissionais em todo o Brasil</span
+      ><span>Projetos sob demanda <i aria-hidden="true"></i> Atendimento remoto</span>
+    </div>
+  </section>
+  <div class="capabilities" aria-label="Nossas frentes de atuação">
+    <div class="container">
+      <span>Digital</span><nexo-icon name="plus" /><span>Software</span
+      ><nexo-icon name="plus" /><span>Automações</span><nexo-icon name="plus" /><span>Dados</span
+      ><nexo-icon name="plus" /><span>Inteligência artificial</span>
+    </div>
+  </div>
+  <nexo-services (choose)="addService($event)" />
+  <nexo-journey (choose)="addPath($event)" />
+  <nexo-about />
+  <nexo-process />
+  <nexo-examples />
+  <nexo-questions />
+  <nexo-briefing
+    [selectedServices]="selectedServices()"
+    (selectedChange)="selectedServices.set($event)"
+  />
+</main>

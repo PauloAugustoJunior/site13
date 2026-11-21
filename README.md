@@ -1,59 +1,67 @@
-# Site13
+# Nexo · site13
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.4.
+Site institucional autoral da Nexo, empresa brasileira de soluções tecnológicas. Apresenta presença digital, software, inteligência artificial, automações e integrações, analytics, engenharia e ciência de dados e consultoria. Público amplo: pequenas e médias empresas e profissionais liberais, com atendimento remoto em todo o Brasil.
 
-## Development server
+## Executar localmente
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Projeto existente preservado: Angular CLI 22.3.0 / Angular 22.3.0, TypeScript 6.0.3, SCSS, Router, componentes standalone, signals, controle de fluxo nativo e Vitest com jsdom. Sem SSR. Node 24.22.3 e npm 12.0.2; `.nvmrc` registra Node 24. Dependências já instaladas por `npm ci`.
 
 ```bash
-ng generate component component-name
+export PATH=/home/codex/.local/bin:$PATH
+npm ci
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+A aplicação fica em **http://localhost:4213/**. O script start executa `ng serve --port 4213`.
 
 ```bash
-ng generate --help
+npm run build -- --configuration production
+npm test -- --watch=false
 ```
 
-## Building
+A saída de produção fica em `dist/site13/browser`. Para um subdiretório de hospedagem, o build pode receber `--base-href /seu-subdiretorio/`. A fonte local é processada pelo bundler para funcionar com o caminho-base. Não há script de lint configurado.
 
-To build the project run:
+## Conceito e referência
 
-```bash
-ng build
-```
+**Conexões que abrem possibilidades.** O hero apresenta um configurador real: selecionar frentes atualiza o resumo e compartilha a seleção com o briefing. Catálogo com detalhe, jornadas selecionáveis e exemplos de aplicação mostram como serviços independentes podem se conectar. A composição varia entre campos claros e azul profundo, com azul elétrico, laranja e diagramas geométricos. Urbanist variável local e licença SIL OFL em `public/fonts`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Referência solicitada: [Kasterweb](https://www.kasterweb.com/), acessada em 21/11/2026 via web e por leitura de HTML/CSS com curl. Inspeção real: menu fixo com dropdowns, tema claro/escuro, CTA arredondado, Inter/Space Grotesk, base clara e azul com acentos âmbar/laranja, hero com serviços conectados, catálogo, integrações e progressão comercial. A primeira leitura com urllib recebeu HTTP 403; curl e web funcionaram. A evidência complementar do coordenador confirmou o stylesheet real. Não foi feita captura de tela nem comparação visual. `DESIGN.md` registra observações, tokens, diferenças e decisões. A Nexo tem texto, fonte, identidade, composição e interações próprios; nenhum material proprietário foi copiado.
 
-## Running unit tests
+## Organização
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- `src/app/pages/home.*`: composição da página e seleção de soluções compartilhada.
+- `src/app/components/configurator.*`: catálogo selecionável do hero e resumo do projeto.
+- `src/app/components/services.*`: sete frentes, com detalhe e inclusão no briefing.
+- `src/app/components/journey.*`: três caminhos ilustrativos e inclusão das soluções relacionadas.
+- `src/app/components/briefing.*`: formulário tipado, validação, geração, cópia e download locais.
+- `src/app/components/header.*`: menu responsivo, Escape, retorno de foco e navegação.
+- `src/app/components/about.*`, `process.*`, `examples.*`, `questions.*`: conteúdo institucional, processo, aplicações ilustrativas e FAQ.
+- `src/app/data/site-content.ts`: conteúdo tipado e configuração de contatos.
+- `src/styles.scss`: tokens, fonte local, elementos base, foco e redução de movimento.
+- `src/app/app.spec.ts`: verificações significativas das interações implementadas.
+- `src/index.html`, `public/favicon.svg`: SEO em pt-BR e favicon autoral.
 
-```bash
-ng test
-```
+Nenhuma dependência npm foi adicionada. A fonte Urbanist é o único recurso externo incorporado, hospedado localmente com a licença preservada. SVGs e mini interfaces são autorais e não dependem de URLs externas.
 
-## Running end-to-end tests
+## Contatos e briefing
 
-For end-to-end (e2e) testing, run:
+`CONTACT` em `src/app/data/site-content.ts` centraliza `email`, `phone` e `whatsapp` como `string | null`, inicialmente **null**, com `status: 'pending'`. Nenhum contato ou endereço foi inventado. Quando canais reais forem fornecidos, atualize essa configuração e conecte os CTAs apropriados após validação dos valores.
 
-```bash
-ng e2e
-```
+O fluxo atual prepara um briefing local, útil para organizar uma solicitação de escopo e orçamento. O nome precisa ter ao menos 2 caracteres; o desafio, 20; e uma frente deve ser escolhida. Espaços em branco não contam como conteúdo. O texto pode ser copiado ou baixado como `.txt` e deve ser compartilhado por um canal oficial quando disponibilizado. O site não envia dados, não salva em servidor, não persiste em localStorage, não simula envio, preço, orçamento ou contratação. A cópia depende da permissão do navegador; há mensagem de recuperação e download alternativo. Qualquer alteração de campo ou seleção invalida imediatamente o texto e o status. Cópia e download também verificam o estado atual e exigem preparar um novo briefing.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Acessibilidade e limites
 
-## Additional Resources
+Layout responsivo a partir de 320px; navegação semântica; um h1; link de pular conteúdo; foco visível; menu com aria-expanded/controls e fechamento após navegação/Escape; seleções com aria-pressed; feedback live; campos e erros associados; FAQ nativo; respeito a prefers-reduced-motion. Os dados visuais e caminhos são identificados como ilustrações. Não há clientes, resultados, certificações, depoimentos ou contatos fictícios.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+O escopo é local. Não foram feitos screenshots, deploy, push, configuração de domínio, backend ou serviços pagos. O workflow `.github/workflows/pages.yml` preexistente foi preservado sem execução. Os resultados reais de build e testes estão registrados abaixo. O coordenador executou QA técnico de navegador, sem screenshots: Urbanist carregada, sem erros de JavaScript, requisições falhas ou violações axe nos estados desktop, mobile, menu aberto e conteúdo expansível inspecionados. O overflow encontrado em Examples foi corrigido com minmax(0, 1fr), min-width: 0, composição menor em telas estreitas e grid de duas colunas em tablet; a repetição dessa checagem está a cargo do coordenador.
+
+## Validação final
+
+Execução em 21/11/2026:
+
+- `npm run build -- --configuration production`: aprovado, sem warnings e sem aumentar budgets; 243,90 kB iniciais (68,53 kB estimados em transferência) e página home lazy de 111,08 kB.
+- `npm test -- --watch=false`: 1 arquivo e 11 testes aprovados. Cobertura funcional: menu e Escape/foco, seleção do configurador e compartilhamento com briefing, explorador de serviços, jornadas, validação incluindo espaços em branco, geração local, cópia e falha de clipboard, download, invalidação após edição e seleção externa e estrutura semântica.
+- `git diff --check -- src/app src/index.html src/styles.scss package.json DESIGN.md README.md`: sem erros. Arquivos de configuração preexistentes com finais de linha CRLF foram preservados.
+- `node_modules`, `dist` e `.angular/cache` confirmados no `.gitignore`.
+
+Sem lint configurado. QA de navegador/axe executado pelo coordenador conforme descrito acima; a correção final de overflow aguarda a repetição dessa checagem pelo coordenador, sem screenshots. Canais oficiais de contato seguem pendentes por ausência de dados fornecidos.

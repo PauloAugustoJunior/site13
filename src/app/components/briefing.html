@@ -1,0 +1,139 @@
+<section class="section briefing-section" id="briefing" aria-labelledby="briefing-title">
+  <div class="container briefing-layout">
+    <div class="briefing-intro">
+      <div class="briefing-emblem" aria-hidden="true"><nexo-icon name="connect" /></div>
+      <h2 id="briefing-title">Vamos dar forma<br />ao seu próximo passo?</h2>
+      <p>
+        Uma boa solução começa com uma boa conversa. Organize sua ideia em um briefing para
+        solicitar uma avaliação de escopo e orçamento.
+      </p>
+      <div class="briefing-how">
+        <span>1</span>
+        <p>Conte o que você precisa resolver.</p>
+        <span>2</span>
+        <p>Prepare seu briefing aqui mesmo.</p>
+        <span>3</span>
+        <p>Copie ou baixe para compartilhar.</p>
+      </div>
+      <div class="privacy-note" id="privacidade">
+        <nexo-icon name="check" />
+        <p>
+          Seus dados ficam nesta página enquanto ela estiver aberta. Não há envio, armazenamento em
+          servidor ou contratação por este formulário. Os canais oficiais de contato ainda serão
+          disponibilizados.
+        </p>
+      </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="generate()" novalidate aria-label="Prepare seu briefing">
+      <h3>Conte um pouco sobre o seu projeto</h3>
+      <p class="form-caption">Os campos com * são obrigatórios.</p>
+      <div class="field">
+        <label for="brief-name">Seu nome ou empresa *</label
+        ><input
+          id="brief-name"
+          type="text"
+          formControlName="name"
+          maxlength="80"
+          autocomplete="organization"
+          placeholder="Como podemos identificar seu projeto?"
+          [attr.aria-invalid]="invalid('name')"
+          [attr.aria-describedby]="invalid('name') ? 'name-error' : null"
+        />
+        @if (invalid('name')) {
+          <span class="error" id="name-error">Informe um nome com pelo menos 2 caracteres.</span>
+        }
+      </div>
+      <fieldset
+        id="brief-services"
+        tabindex="-1"
+        [attr.aria-describedby]="
+          attempted() && !selectedServices().length ? 'services-error' : null
+        "
+      >
+        <legend>Quais frentes você quer explorar? *</legend>
+        <div class="brief-service-options">
+          @for (service of services; track service.id) {
+            <button
+              type="button"
+              [class.selected]="selectedServices().includes(service.id)"
+              [attr.aria-pressed]="selectedServices().includes(service.id)"
+              (click)="toggleService(service.id)"
+            >
+              @if (selectedServices().includes(service.id)) {
+                <nexo-icon name="check" />
+              }
+              {{ service.name }}
+            </button>
+          }
+        </div>
+        @if (attempted() && !selectedServices().length) {
+          <span class="error" id="services-error"
+            >Escolha ao menos uma frente. Se ainda não souber, selecione consultoria.</span
+          >
+        }
+      </fieldset>
+      <div class="field">
+        <label for="brief-goal">Qual desafio você quer resolver? *</label
+        ><textarea
+          id="brief-goal"
+          formControlName="goal"
+          rows="4"
+          maxlength="1200"
+          placeholder="Conte como funciona hoje e o que você gostaria de melhorar."
+          [attr.aria-invalid]="invalid('goal')"
+          [attr.aria-describedby]="invalid('goal') ? 'goal-help goal-error' : 'goal-help'"
+        ></textarea
+        ><span id="goal-help" class="field-help"
+          >Use pelo menos 20 caracteres. Não inclua senhas ou informações sensíveis.</span
+        >
+        @if (invalid('goal')) {
+          <span class="error" id="goal-error"
+            >Descreva seu desafio com pelo menos 20 caracteres.</span
+          >
+        }
+      </div>
+      <div class="field">
+        <label for="brief-tools">Já utiliza algum sistema ou ferramenta?</label
+        ><input
+          id="brief-tools"
+          type="text"
+          formControlName="tools"
+          maxlength="500"
+          placeholder="Opcional. Ex.: planilhas, site, sistema de gestão."
+        />
+      </div>
+      <div class="field">
+        <label for="brief-timeframe">Em que momento está o projeto?</label
+        ><select id="brief-timeframe" formControlName="timeframe">
+          <option>Ainda estou explorando</option>
+          <option>Quero planejar os próximos meses</option>
+          <option>Tenho uma necessidade para agora</option>
+          <option>Já tenho um projeto em andamento</option>
+        </select>
+      </div>
+      <button class="button generate-button" type="submit">
+        Preparar meu briefing <nexo-icon name="diagonal" />
+      </button>
+      <p class="local-note">Gera um texto local. Nenhuma informação é enviada.</p>
+      <p class="brief-status" role="status">{{ status() }}</p>
+      @if (generated()) {
+        <div class="brief-result">
+          <h3>Seu briefing está pronto.</h3>
+          <label class="sr-only" for="brief-result">Texto do briefing preparado</label
+          ><textarea id="brief-result" readonly rows="10" [value]="generated()"></textarea>
+          <div class="result-actions">
+            <button class="button button-small" type="button" (click)="copy()">
+              <nexo-icon name="copy" />Copiar texto</button
+            ><button class="button button-small button-outline" type="button" (click)="download()">
+              <nexo-icon name="download" />Baixar .txt
+            </button>
+          </div>
+          <p>
+            Compartilhe por um canal oficial da Nexo quando disponibilizado. Se alterar o projeto,
+            prepare o briefing novamente.
+          </p>
+        </div>
+      }
+    </form>
+  </div>
+</section>

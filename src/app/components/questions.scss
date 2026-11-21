@@ -1,0 +1,75 @@
+.faq-section {
+  border-top: 1px solid var(--line);
+}
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 100px;
+}
+.faq-layout > div > p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 25px;
+}
+.faq-layout .text-link {
+  font-size: 13px;
+  margin-top: 20px;
+  color: var(--blue);
+}
+details {
+  border-bottom: 1px solid var(--line);
+}
+details:first-child {
+  border-top: 1px solid var(--line);
+}
+summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 25px 0;
+  line-height: 1.5;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary > span {
+  color: var(--blue);
+  font-size: 14px;
+  transition: transform 0.2s;
+}
+details[open] summary > span {
+  transform: rotate(45deg);
+}
+details > p {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 0 30px 25px 0;
+  max-width: 65ch;
+}
+summary:hover {
+  color: var(--blue);
+}
+@media (max-width: 1100px) {
+  .faq-layout {
+    gap: 55px;
+  }
+}
+@media (max-width: 820px) {
+  .faq-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .faq-layout h2 br {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  summary {
+    font-size: 14px;
+  }
+}

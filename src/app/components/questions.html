@@ -1,0 +1,19 @@
+<section class="section faq-section" id="duvidas" aria-labelledby="faq-title">
+  <div class="container faq-layout">
+    <div>
+      <h2 id="faq-title">Antes do<br />próximo passo.</h2>
+      <p>Algumas respostas para começar<br />com mais clareza.</p>
+      <a class="text-link" href="#briefing">Organizar meu projeto <nexo-icon name="arrow" /></a>
+    </div>
+    <div class="faq-list">
+      @for (item of faq; track item.question) {
+        <details>
+          <summary>
+            {{ item.question }}<span aria-hidden="true"><nexo-icon name="plus" /></span>
+          </summary>
+          <p>{{ item.answer }}</p>
+        </details>
+      }
+    </div>
+  </div>
+</section>

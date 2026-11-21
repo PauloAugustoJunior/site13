@@ -1,0 +1,179 @@
+:host {
+  display: block;
+  position: relative;
+}
+.configurator {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 22px 55px #233d7712;
+  position: relative;
+}
+.config-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.config-heading h2 {
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+.config-symbol {
+  height: 36px;
+  width: 36px;
+  display: grid;
+  place-items: center;
+  background: var(--peach);
+  color: #a24317;
+  border-radius: 10px;
+}
+.live-label {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+.config-intro {
+  font-size: 12px;
+  color: var(--muted);
+  margin-block: 16px 20px;
+}
+.solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+.solution-grid button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 8px;
+  text-align: left;
+  min-height: 68px;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 650;
+}
+.solution-grid button > nexo-icon {
+  color: var(--blue);
+  font-size: 17px;
+}
+.solution-grid button > span:not(.selection-mark) {
+  flex: 1;
+}
+.solution-grid button:last-child {
+  grid-column: 1/-1;
+  min-height: 55px;
+}
+.solution-grid button:hover {
+  border-color: var(--blue);
+  background: #f6f8ff;
+}
+.solution-grid button.selected {
+  background: #edf1ff;
+  border-color: #879beb;
+}
+.selection-mark {
+  display: grid;
+  place-items: center;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--sky);
+  color: var(--muted);
+  font-size: 10px;
+}
+.selected .selection-mark {
+  background: var(--blue);
+  color: white;
+}
+.project-summary {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #fff;
+  min-height: 124px;
+}
+.summary-label {
+  font-size: 10px;
+  color: #d6dfee;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.status-dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #f9b880;
+}
+.project-summary p {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 12px 0 8px;
+}
+.project-summary > span {
+  font-size: 10px;
+  color: #bdcce0;
+}
+.config-continue {
+  font-size: 12px;
+  font-weight: 650;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-decoration: none;
+  margin-top: 20px;
+  padding-top: 3px;
+}
+.config-continue:hover {
+  color: var(--blue);
+}
+@media (max-width: 1100px) {
+  .configurator {
+    padding: 22px;
+  }
+  .solution-grid button {
+    font-size: 11px;
+    gap: 8px;
+    padding: 10px;
+  }
+  .config-heading h2 {
+    font-size: 17px;
+  }
+}
+@media (max-width: 400px) {
+  .configurator {
+    padding: 18px;
+  }
+  .config-heading {
+    gap: 8px;
+  }
+  .config-heading h2 {
+    font-size: 17px;
+  }
+  .live-label {
+    display: none;
+  }
+  .solution-grid {
+    grid-template-columns: 1fr;
+  }
+  .solution-grid button {
+    min-height: 55px;
+    font-size: 13px;
+  }
+  .project-summary {
+    padding: 16px;
+  }
+  .project-summary p {
+    font-size: 17px;
+  }
+}
